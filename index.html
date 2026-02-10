@@ -14,7 +14,7 @@
     body {
       width: 100%;
       height: 100vh;
-      cursor: pointer;
+      cursor: url('https://i.scdn.co/image/ab67616d0000b273ae75fb0f0023235dc4e62283'), pointer;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -81,7 +81,7 @@
         let vx = (Math.random() - 0.5) * 10;
         let vy = (Math.random() - 0.5) * 10;
         
-        setInterval(() => {
+        let bounceInterval = setInterval(() => {
           x += vx;
           y += vy;
           
