@@ -1,13 +1,104 @@
-<button onclick="nice()">CLICK HERE FOR A FREE DISCORD NITRO</button>
-
-<script>
-let beat = new Audio('rick.mp3');
-function playAudio() { 
-  beat.play(); 
-}
-  
-function nice() {
-  document.write("<div style='display: flex; align-items: center; justify-content: center; height: 100vh;'><div style='background-color: #fff; padding: 20px;'><h1 style='text-align: center;'>You have been rick rolled!</h1><img class='J9AiF' src='https://64.media.tumblr.com/tumblr_m971zpBbAF1rbgzizo1_500.gifv' alt='Tumblr: Image' style='transform: rotate(45deg); animation: rotate-animation 10s infinite linear;'></div></div><audio id='nice'><source src='./rick.mp3' type='audio/mp3'></audio><style>@keyframes rotate-animation {0% {transform: rotate(0deg);}50% {transform: rotate(180deg);}100% {transform: rotate(360deg);}}</style>");
-  playAudio();
-}
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://i.scdn.co/image/ab67616d0000b273ae75fb0f0023235dc4e62283">
+  <title>You have been rick rolled!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100%;
+      height: 100vh;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    h1 {
+      display: none;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .popup-window {
+      position: fixed;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 500px;
+      animation: spin 3s infinite linear;
+      z-index: 1000;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>You have been rick rolled!</h1>
+    <img src='https://64.media.tumblr.com/tumblr_m971zpBbAF1rbgzizo1_500.gifv' alt='Rick Astley'>
+  </div>
+  <audio id='audio' autoplay loop>
+    <source src='./rick.mp3' type='audio/mp3'>
+  </audio>
+  <script>
+    let beat = new Audio('rick.mp3');
+    beat.loop = true;
+    let audioStarted = false;
+    
+    document.body.addEventListener('click', function() {
+      if (!audioStarted) {
+        beat.play();
+        audioStarted = true;
+      }
+      
+      let newWindow = window.open(window.location.href, '_blank', 'width=800,height=600');
+      
+      if (newWindow) {
+        let x = Math.random() * (window.screen.width - 800);
+        let y = Math.random() * (window.screen.height - 600);
+        let vx = (Math.random() - 0.5) * 10;
+        let vy = (Math.random() - 0.5) * 10;
+        
+        setInterval(() => {
+          x += vx;
+          y += vy;
+          
+          if (x <= 0 || x + 800 >= window.screen.width) vx *= -1;
+          if (y <= 0 || y + 600 >= window.screen.height) vy *= -1;
+          
+          x = Math.max(0, Math.min(x, window.screen.width - 800));
+          y = Math.max(0, Math.min(y, window.screen.height - 600));
+          
+          try {
+            newWindow.moveTo(x, y);
+          } catch (e) {
+            clearInterval(bounceInterval);
+          }
+        }, 1);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,2 +1,2 @@
 # youhavebeenrickrolled
-nothing but a thing ive made to rick roll people, use it if you want
+a very bad low quality low effort things to make people angry
